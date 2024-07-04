@@ -12,7 +12,7 @@
 
 NAME		= push_swap
 
-CC			= cc -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment
+CC			= cc
 INC			= ./
 CFLAGS		= -g -Wall -Wextra -Werror -I./
 RM			= rm -f
@@ -56,3 +56,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+#-fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment

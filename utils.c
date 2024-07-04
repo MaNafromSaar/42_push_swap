@@ -17,6 +17,18 @@ int	ft_isdigit(int c)
 	return (c >= '0' && c <= '9');
 }
 
+void free_tab(char **tab)
+{
+    int i = 0;
+    while (tab[i])
+    {
+        free(tab[i]);
+        i++;
+    }
+    free(tab);
+	tab = NULL;
+}
+
 static int	wordcount(const char *s, char c)
 {
 	int		count;
@@ -50,11 +62,13 @@ char	*get_next_word(const char *s, char c, int *cursor)
 
 	len = 0;
 	i = 0;
+	if (!s || *cursor < 0)
+		return NULL;
 	while (s[*cursor + len] != c && s[*cursor + len])
 		len++;
 	word = malloc(sizeof(char) * (len + 1));
 	if (!word)
-		return (NULL);
+		return NULL;
 	while (s[*cursor] != c && s[*cursor] != '\0')
 		word[i++] = s[(*cursor)++];
 	word[i] = '\0';
@@ -75,17 +89,12 @@ char	**split(const char *s, char c)
 	word_count = wordcount(s, c);
 	tab = malloc(sizeof(char *) * (word_count + 1));
 	if (!tab)
-		return (NULL);
+		return NULL;
 	while (i < word_count)
 	{
 		tab[i] = get_next_word(s, c, &cursor);
 		if (!tab[i])
-		{
-			while (i >= 0)
-				free(tab[i--]);
-			free(tab);
-			return (NULL);
-		}
+			free_tab(tab);
 		i++;
 	}
 	tab[i] = NULL;

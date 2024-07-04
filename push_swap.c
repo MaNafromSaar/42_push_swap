@@ -50,6 +50,7 @@ int	main(int argc, char **argv)
 		return (0);
 	select_case(&a, &b);
 	free_stack(&a);
+	free_tab(args);
 	return (0);
 }
 

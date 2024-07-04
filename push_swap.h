@@ -78,5 +78,6 @@ int				input_error(char *str);
 int				duplicate_error(t_stack_node *stack, int data);
 void			free_stack(t_stack_node **stack);
 void			error_handling(t_stack_node **a);
+void			free_tab(char **tab);
 
 #endif
